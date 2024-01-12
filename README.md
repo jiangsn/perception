@@ -31,5 +31,3 @@ Formatted results of our studies are available in `results/formatted_data/`
 
 ## Figures
 Check the scipt `jupyter/draw_figures.ipynb`, it generages all figures we used in our paper.
-
-## Statistic Analysis
