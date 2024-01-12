@@ -19,42 +19,17 @@ Execute `python exp/<EXPERIMENT>.py <BARTYPE> <METHOD> <RUNINDEX> <LEVEL> <MODEL
 You can find detailed explainations to these arguments in our paper or you can check the code directly.
 
 
-# Results
+## Results
 The training/validation/test samples, test images and labels, and the model training history of each experiment run are stored in a Python dict and dumpped as a pickle file. You can mearge the results of multiple runs into a single table for fast and structured processing using `jupyter/formatting.ipynb`.
 
-Formatted results of our studies are available 
+Formatted results of our studies are available in `results/formatted_data/`
+
+- `*.feather`: Predictions and ground truths store in [feather formate](https://arrow.apache.org/docs/python/feather.html). 
+- `*.history.feather`: Training histories.
+- `*.p`: Configuration metadata in [pickle format](https://docs.python.org/3/library/pickle.html).
 
 
-## Environment
-Use `conda env create -f environment.yml` to create environment.
+## Figures
+Check the scipt `jupyter/draw_figures.ipynb`, it generages all figures we used in our paper.
 
-Envrironment name is 'CP', if there exist an environment with same name please change `name:` in `environment.yml`.
-
-And use `conda avtivate CP` to activate environment.
-
-## Run Jobs
-Please run `study2_height.py` Use `python study2_height.py TYPE SPLIT SEED GPU_ID` (run one job).
-
-We have 300 jobs in total for this sub-study, please consider using batch script (see **Batch Script** below)
-
-### Arguments
-`TYPE`: \['type1', 'type2', 'type3', 'type4', 'type5'\]
-
-`SPLIT`: \['All', 'HalfRandom', 'HalfMin', 'HalfMax', 'HalfAdversarial', 'HalfCoverage'\], six different sampling methods
-
-`SEED`: In order to make different sampling methods comparable, we let each run share the same random seed amoung different sampling methods. E.g. `SEED` of type2, third run is 23, regardless the `SPLIT`.
-
-`GPU_ID`: An optional parameter that specify which GPU is used for running this job.
-
-### Batch Script
-Please refer to the comments in `scheduler.py`
-
-Basic idea: scheduler will continue querying if there is a CNN perception job running on each GPU. If a GPU is available it will start a thread to run a job on that GPU.
-
-### Output Path
-Please change the prefix in `study2_height.py` (line 52)
-
-## Results
-Although we saved weight of each run, we don't need them for now. So if you're running out of storage please feel free to remove it.
-
-And if it is possible, please upload results (".p" files) to this repo.
+## Statistic Analysis
